@@ -1,0 +1,104 @@
+<dashboard version="1.1" theme="dark">
+  <label>JFrog Security Analytics - Home</label>
+  <description>Overview of JFrog Artifactory and Xray security events</description>
+  <row>
+    <panel>
+      <single>
+        <title>Critical Violations (24h)</title>
+        <search>
+          <query>`jfrog_xray_violations_index` `jfrog_critical_severity` earliest=-24h | stats count</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0xAFD3E8","0xF8BE34","0xD93F3C"]</option>
+        <option name="rangeValues">[0,1]</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>High Violations (24h)</title>
+        <search>
+          <query>`jfrog_xray_violations_index` severity="High" earliest=-24h | stats count</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0xAFD3E8","0xF8BE34","0xD93F3C"]</option>
+        <option name="rangeValues">[0,5]</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Failed Auth Attempts (24h)</title>
+        <search>
+          <query>`jfrog_artifactory_access_index` action_response="DENIED" earliest=-24h | stats count</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0xAFD3E8","0xF8BE34","0xD93F3C"]</option>
+        <option name="rangeValues">[0,10]</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Total Artifact Downloads (24h)</title>
+        <search>
+          <query>`jfrog_artifactory_traffic_index` earliest=-24h | stats count</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Xray Violations by Severity (7 Days)</title>
+        <search>
+          <query>`jfrog_xray_violations_index` | timechart span=1d count by severity</query>
+          <earliest>-7d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.fieldColors">{"Critical": 0xD93F3C, "High": 0xF8BE34, "Medium": 0x6DB7C6, "Low": 0xAFD3E8}</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Top 10 Vulnerable Components</title>
+        <search>
+          <query>`jfrog_xray_violations_index` `jfrog_high_severity` | stats count by component_name | sort - count | head 10</query>
+          <earliest>-30d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.legend.placement">none</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Recent Critical Violations</title>
+        <search>
+          <query>`jfrog_xray_violations_index` `jfrog_critical_severity` | table _time, component_name, cve, severity, watch_name, description | sort - _time | head 10</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

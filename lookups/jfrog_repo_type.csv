@@ -1,0 +1,5 @@
+repo_type,repo_type_label,description
+LOCAL,Local,A locally hosted repository
+REMOTE,Remote,A proxy repository to a remote source
+VIRTUAL,Virtual,An aggregation of local and remote repositories
+FEDERATED,Federated,A federated repository across Artifactory instances

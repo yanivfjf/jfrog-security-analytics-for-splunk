@@ -1,0 +1,23 @@
+<nav search_view="search" color="#00B373">
+  <view name="home" default="true" label="Home"/>
+  <collection label="Security">
+    <view name="xray_violations_overview" label="Violations Overview"/>
+    <view name="xray_critical_violations" label="Critical Violations"/>
+    <view name="xray_license_violations" label="License Violations"/>
+    <view name="xray_vulnerabilities_by_cve" label="CVE Analysis"/>
+  </collection>
+  <collection label="Artifactory">
+    <view name="artifactory_access_overview" label="Access Overview"/>
+    <view name="artifactory_failed_auth" label="Failed Authentication"/>
+    <view name="artifactory_traffic" label="Traffic Analysis"/>
+    <view name="artifactory_top_artifacts" label="Top Artifacts"/>
+  </collection>
+  <collection label="Search">
+    <view name="search" label="Search"/>
+    <view name="analytics" label="Analytics"/>
+    <view name="datasets" label="Datasets"/>
+    <view name="reports" label="Reports"/>
+    <view name="alerts" label="Alerts"/>
+    <view name="dashboards" label="Dashboards"/>
+  </collection>
+</nav>

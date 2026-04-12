@@ -1,0 +1,6 @@
+severity,severity_rank,severity_color,severity_label
+Critical,4,red,Critical Security Issue
+High,3,orange,High Security Issue
+Medium,2,yellow,Medium Security Issue
+Low,1,blue,Low Security Issue
+Unknown,0,grey,Unknown Severity

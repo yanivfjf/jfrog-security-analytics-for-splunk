@@ -1,0 +1,44 @@
+/* JFrog Security Analytics for Splunk - Custom Styles */
+
+:root {
+    --jfrog-green: #00B373;
+    --jfrog-dark: #1C2B33;
+    --jfrog-text: #F5F5F5;
+    --severity-critical: #D93F3C;
+    --severity-high: #F8BE34;
+    --severity-medium: #6DB7C6;
+    --severity-low: #AFD3E8;
+}
+
+.jfrog-header {
+    background-color: var(--jfrog-dark);
+    color: var(--jfrog-text);
+    padding: 10px 20px;
+    border-bottom: 3px solid var(--jfrog-green);
+}
+
+.jfrog-severity-critical {
+    color: var(--severity-critical);
+    font-weight: bold;
+}
+
+.jfrog-severity-high {
+    color: var(--severity-high);
+    font-weight: bold;
+}
+
+.jfrog-severity-medium {
+    color: var(--severity-medium);
+}
+
+.jfrog-severity-low {
+    color: var(--severity-low);
+}
+
+.jfrog-panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--jfrog-green);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

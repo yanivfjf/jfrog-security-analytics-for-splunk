@@ -1,0 +1,75 @@
+<dashboard version="1.1" theme="dark">
+  <label>Artifactory Access Overview</label>
+  <description>JFrog Artifactory access log analysis</description>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="time" token="time_range">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <single>
+        <title>Total Access Events</title>
+        <search>
+          <query>`jfrog_artifactory_access_index` | stats count</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Denied Access Events</title>
+        <search>
+          <query>`jfrog_artifactory_access_index` action_response="DENIED" | stats count</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0xAFD3E8","0xF8BE34","0xD93F3C"]</option>
+        <option name="rangeValues">[0,5]</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Unique Users</title>
+        <search>
+          <query>`jfrog_artifactory_access_index` | stats dc(username) as unique_users</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Access Events Over Time</title>
+        <search>
+          <query>`jfrog_artifactory_access_index` | timechart span=1h count by action_response</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.fieldColors">{"ACCEPTED": 0x53A051, "DENIED": 0xD93F3C}</option>
+      </chart>
+    </panel>
+    <panel>
+      <table>
+        <title>Top Users by Failed Auth</title>
+        <search>
+          <query>`jfrog_artifactory_access_index` action_response="DENIED" | stats count as failed_attempts by username, ip | sort - failed_attempts | head 20</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+</dashboard>

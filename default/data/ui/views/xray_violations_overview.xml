@@ -1,0 +1,61 @@
+<dashboard version="1.1" theme="dark">
+  <label>Xray Violations Overview</label>
+  <description>JFrog Xray security violations analysis and trends</description>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="time" token="time_range">
+      <label>Time Range</label>
+      <default>
+        <earliest>-7d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="multiselect" token="severity_filter">
+      <label>Severity</label>
+      <choice value="Critical">Critical</choice>
+      <choice value="High">High</choice>
+      <choice value="Medium">Medium</choice>
+      <choice value="Low">Low</choice>
+      <default>Critical,High</default>
+      <delimiter>,</delimiter>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <chart>
+        <title>Violations Over Time</title>
+        <search>
+          <query>`jfrog_xray_violations_index` severity IN ($severity_filter$) | timechart span=6h count by severity</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.stackMode">stacked</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Violations by Watch</title>
+        <search>
+          <query>`jfrog_xray_violations_index` severity IN ($severity_filter$) | stats count by watch_name | sort - count</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Violations Detail</title>
+        <search>
+          <query>`jfrog_xray_violations_index` severity IN ($severity_filter$) | table _time, component_name, cve, cvss_score, severity, violation_type, watch_name, policy_name | sort - _time</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">true</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

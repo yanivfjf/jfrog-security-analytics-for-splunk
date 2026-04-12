@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk config user.email \"yanivf@jfrog.com\")",
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk config user.name \"Yaniv F\")",
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk add .)",
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk commit -m ':*)"
+    ]
+  }
+}
