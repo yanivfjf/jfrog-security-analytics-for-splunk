@@ -7,7 +7,20 @@
       "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk config user.email \"yanivf@jfrog.com\")",
       "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk config user.name \"Yaniv F\")",
       "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk add .)",
-      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk commit -m ':*)"
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk commit -m ':*)",
+      "Bash(unzip -l /Users/yanivf/Downloads/Vulnerabilities_test_report_18_Feb_2026_14_21__GMT_0200-12-4-2026.zip)",
+      "Bash(unzip -p /Users/yanivf/Downloads/Vulnerabilities_test_report_18_Feb_2026_14_21__GMT_0200-12-4-2026.zip)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk/bin/jfrog_vuln_report_input.py)",
+      "Bash(gh auth:*)",
+      "Bash(gh api:*)",
+      "Bash(gh org:*)",
+      "Bash(git config:*)",
+      "Bash(gh repo:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk status)",
+      "Bash(git -C /Users/yanivf/Documents/Github/jfrog-security-analytics-for-splunk diff)"
     ]
   }
 }
