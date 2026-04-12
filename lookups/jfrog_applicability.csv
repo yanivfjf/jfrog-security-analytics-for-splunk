@@ -1,0 +1,8 @@
+applicability_result,applicability_label,applicability_description
+applicable,Applicable,The vulnerability is applicable to this component in context
+not_applicable,Not Applicable,Contextual analysis confirmed the vulnerability is not exploitable
+not_covered,Not Covered,Component type is not covered by contextual analysis
+not_scanned,Not Scanned,The artifact has not been scanned for applicability
+technology_unsupported,Technology Unsupported,Contextual analysis does not support this technology
+undetermined,Undetermined,Applicability could not be determined
+rescan_required,Rescan Required,A rescan is needed to determine applicability

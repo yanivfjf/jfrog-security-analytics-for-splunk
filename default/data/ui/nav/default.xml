@@ -5,6 +5,7 @@
     <view name="xray_critical_violations" label="Critical Violations"/>
     <view name="xray_license_violations" label="License Violations"/>
     <view name="xray_vulnerabilities_by_cve" label="CVE Analysis"/>
+    <view name="xray_vulnerability_reports" label="Vulnerability Reports"/>
   </collection>
   <collection label="Artifactory">
     <view name="artifactory_access_overview" label="Access Overview"/>
