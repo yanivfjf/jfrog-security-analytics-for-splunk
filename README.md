@@ -2,8 +2,16 @@
 
 A Splunk application providing dashboards, saved searches, and analytics for JFrog Artifactory and Xray security events.
 
+## Screenshots
+
+### Xray Vulnerability Reports Dashboard
+![Xray Vulnerability Reports Dashboard](README_files/xray_vulnerability_reports_dashboard.png)
+
+*KPI singles, severity breakdown, package-type distribution, applicability analysis, top impacted artifacts, top vulnerable packages, CVE trends, and full filterable detail table — all driven by exported JFrog Xray vulnerability report JSON files.*
+
 ## Features
 
+- **Xray Vulnerability Reports** — Full-fidelity ingestion of exported Xray vulnerability report JSON files via scripted input or HEC, with per-row events and flattened CVE fields
 - **Xray Security Violations** — Real-time dashboards for critical/high/medium/low violations
 - **CVE Analysis** — Track vulnerabilities by CVE across your artifact ecosystem
 - **License Violations** — Monitor license policy breaches
@@ -34,6 +42,7 @@ A Splunk application providing dashboards, saved searches, and analytics for JFr
 | `jfrog:artifactory:traffic` | Artifactory traffic logs | `jfrog` |
 | `jfrog:xray:violations` | Xray security violations | `jfrog` |
 | `jfrog:xray:siem` | Xray SIEM events | `jfrog` |
+| `jfrog:xray:vulnerability_report` | Xray exported vulnerability report JSON (scripted input / HEC) | `jfrog` |
 
 ## Directory Structure
 
